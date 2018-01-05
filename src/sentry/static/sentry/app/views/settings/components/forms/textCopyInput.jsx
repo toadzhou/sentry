@@ -6,22 +6,16 @@ import styled from 'react-emotion';
 
 import {inputStyles} from './styled/styles';
 import {selectText} from '../../../../utils/selectText';
-import AutoSelectText from '../../../../components/autoSelectText';
 import Button from '../../../../components/buttons/button';
 import Clipboard from '../../../../components/clipboard';
 import InlineSvg from '../../../../components/inlineSvg';
 
-const StyledAutoSelectText = styled(AutoSelectText)`
+const StyledInput = styled.input`
   ${inputStyles};
-  display: inline-block;
-  width: auto;
-  padding: 0;
+  width: 100%;
 `;
 
-const OverflowContainer = styled(Flex)`
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
+const OverflowContainer = styled(Flex)``;
 
 const Wrapper = styled(Flex)`
   overflow: hidden;
@@ -37,10 +31,21 @@ class TextCopyInput extends React.Component {
      * CSS style object
      */
     style: PropTypes.object,
+    /**
+     * Custom renderer function, should return a React.Element
+     *
+     * Renderer is provided an object: {value, ref}
+     */
+    renderer: PropTypes.func,
+    /**
+     * If true will apply "flex: 1" to containing element of text
+     */
+    flexValueContainer: PropTypes.bool,
     onCopy: PropTypes.func,
   };
 
   static defaultProps = {
+    flexValueContainer: true,
     onCopy: () => {},
   };
 
@@ -48,16 +53,31 @@ class TextCopyInput extends React.Component {
     super(props);
   }
 
+  defaultRenderer = () => (
+    <StyledInput
+      readOnly
+      disabled
+      ref={this.handleAutoMount}
+      value={this.props.children}
+      style={this.props.style}
+    />
+  );
+
+  handleSelectText = e => {
+    if (!this.textRef) return;
+    // We use findDOMNode here because `this.textRef` is not a dom node,
+    // it's a ref to AutoSelectText
+    // eslint-disable-next-line react/no-find-dom-node
+    selectText(ReactDOM.findDOMNode(this.textRef));
+  };
+
   // Select text when copy button is clicked
   handleCopyClick = e => {
     if (!this.textRef) return;
 
     let {onCopy} = this.props;
 
-    // We use findDOMNode here because `this.textRef` is not a dom node,
-    // it's a ref to AutoSelectText
-    // eslint-disable-next-line react/no-find-dom-node
-    selectText(ReactDOM.findDOMNode(this.textRef));
+    this.handleSelectText();
 
     onCopy(this.props.children, e);
 
@@ -69,18 +89,23 @@ class TextCopyInput extends React.Component {
   };
 
   render() {
-    let {style, children} = this.props;
+    let {flexValueContainer, children, renderer} = this.props;
+
+    let renderedComponent = renderer
+      ? renderer({value: children, ref: this.handleAutoMount})
+      : this.defaultRenderer();
 
     return (
       <Wrapper>
-        <OverflowContainer flex="1">
-          <StyledAutoSelectText innerRef={this.handleAutoMount} style={style}>
-            {children}
-          </StyledAutoSelectText>
+        <OverflowContainer
+          flex={flexValueContainer ? '1' : ''}
+          onClick={this.handleSelectText}
+        >
+          {renderedComponent}
         </OverflowContainer>
-        <Clipboard hideUnsupported onClick={this.handleCopyClick} value={children}>
+        <Clipboard hideUnsupported value={children}>
           <Flex shrink="0">
-            <Button borderless size="xsmall" onClick={this.handleCopyClick}>
+            <Button type="button" borderless size="xsmall" onClick={this.handleCopyClick}>
               <InlineSvg src="icon-copy" />
             </Button>
           </Flex>

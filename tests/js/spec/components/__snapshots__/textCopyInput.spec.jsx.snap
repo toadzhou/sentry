@@ -4,18 +4,18 @@ exports[`TextCopyInput renders 1`] = `
 <Styled(Base)>
   <Styled(Base)
     flex="1"
+    onClick={[Function]}
   >
-    <Styled(AutoSelectText)
-      innerRef={[Function]}
-    >
-      Text to Copy
-    </Styled(AutoSelectText)>
+    <Styled(input)
+      disabled={true}
+      readOnly={true}
+      value="Text to Copy"
+    />
   </Styled(Base)>
   <Clipboard
     errorMessage="Error copying to clipboard"
     hideMessages={false}
     hideUnsupported={true}
-    onClick={[Function]}
     successMessage="Copied to clipboard"
     value="Text to Copy"
   >
@@ -27,6 +27,7 @@ exports[`TextCopyInput renders 1`] = `
         disabled={false}
         onClick={[Function]}
         size="xsmall"
+        type="button"
       >
         <InlineSvg
           src="icon-copy"

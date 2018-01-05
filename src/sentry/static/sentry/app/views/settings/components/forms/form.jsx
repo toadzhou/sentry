@@ -16,6 +16,7 @@ export default class Form extends React.Component {
     submitDisabled: PropTypes.bool,
     submitLabel: PropTypes.string,
     footerClass: PropTypes.string,
+    footerStyle: PropTypes.object,
     extraButton: PropTypes.element,
     initialData: PropTypes.object,
     requireChanges: PropTypes.bool,
@@ -104,6 +105,7 @@ export default class Form extends React.Component {
       className,
       children,
       footerClass,
+      footerStyle,
       submitDisabled,
       submitLabel,
       cancelLabel,
@@ -119,7 +121,7 @@ export default class Form extends React.Component {
         {children}
 
         {shouldShowFooter && (
-          <div className={footerClass} style={{marginTop: 25}}>
+          <div className={footerClass} style={{marginTop: 25, ...footerStyle}}>
             <Observer>
               {() => (
                 <Button

@@ -148,6 +148,22 @@ const accountSettingsRoutes = [
     name="Avatar"
     component={errorHandler(AccountAvatar)}
   />,
+
+  <Route key="api" path="api/" name="API">
+    <IndexRedirect to="auth-tokens/" />
+    <Route path="auth-tokens/" name="Auth Tokens">
+      <IndexRoute
+        componentPromise={() => import('./views/settings/account/apiTokens')}
+        component={errorHandler(LazyLoad)}
+      />
+      <Route
+        path="new-token/"
+        name="Create New Token"
+        componentPromise={() => import('./views/settings/account/apiNewToken')}
+        component={errorHandler(LazyLoad)}
+      />
+    </Route>
+  </Route>,
 ];
 
 const projectSettingsRoutes = [
