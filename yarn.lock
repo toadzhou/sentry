@@ -919,12 +919,10 @@ babel-plugin-dynamic-import-node@1.1.0:
     babel-types "^6.26.0"
 
 babel-plugin-dynamic-import-node@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/babel-plugin-dynamic-import-node/-/babel-plugin-dynamic-import-node-1.0.2.tgz#adb5bc8f48a89311540395ae9f0cc3ed4b10bb2e"
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-dynamic-import-node/-/babel-plugin-dynamic-import-node-1.2.0.tgz#f91631e703e0595e47d4beafbb088576c87fbeee"
   dependencies:
     babel-plugin-syntax-dynamic-import "^6.18.0"
-    babel-template "^6.24.1"
-    babel-types "^6.24.1"
 
 babel-plugin-emotion@^8.0.12, babel-plugin-emotion@^8.0.2-11:
   version "8.0.12"
@@ -5110,6 +5108,14 @@ jest-jasmine2@^21.2.1:
     jest-message-util "^21.2.1"
     jest-snapshot "^21.2.1"
     p-cancelable "^0.3.0"
+
+jest-junit@^3.4.1:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/jest-junit/-/jest-junit-3.4.1.tgz#0f0aea65551290cabdf9a29a1681edb4eba418c5"
+  dependencies:
+    mkdirp "^0.5.1"
+    strip-ansi "^4.0.0"
+    xml "^1.0.1"
 
 jest-matcher-utils@^21.2.1:
   version "21.2.1"
@@ -9366,6 +9372,10 @@ xdg-basedir@^3.0.0:
 xml-name-validator@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/xml-name-validator/-/xml-name-validator-2.0.1.tgz#4d8b8f1eccd3419aa362061becef515e1e559635"
+
+xml@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/xml/-/xml-1.0.1.tgz#78ba72020029c5bc87b8a81a3cfcd74b4a2fc1e5"
 
 xtend@^4.0.0, xtend@^4.0.1:
   version "4.0.1"

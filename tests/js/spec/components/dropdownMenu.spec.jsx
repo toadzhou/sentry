@@ -118,7 +118,6 @@ describe('DropdownMenu', function() {
       </DropdownMenu>
     );
 
-    print(wrapper.find('button'));
     wrapper.find('span').simulate('click');
     expect(rootClick).toHaveBeenCalled();
     wrapper.find('button').simulate('click');
