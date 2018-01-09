@@ -87,7 +87,8 @@ class OrganizationMemberDetailsEndpoint(OrganizationEndpoint):
                 organization=organization,
                 id=member_id,
             )
-        return queryset.select_related('user').first()
+        # can return multiple memberships when a superuser is requesting
+        return queryset.select_related('user').get()[0]
 
     def _is_only_owner(self, member):
         if member.role != roles.get_top_dog().id:
