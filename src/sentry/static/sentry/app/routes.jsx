@@ -152,15 +152,13 @@ const accountSettingsRoutes = [
   <Route key="api" path="api/" name="API">
     <Route path="applications/" name="Applications">
       <IndexRoute
-        getComponent={() =>
-          import('./views/settings/account/apiApplications').then(getDefaultModule)}
+        componentPromise={() => import('./views/settings/account/apiApplications')}
         component={errorHandler(LazyLoad)}
       />
       <Route
         path=":appId/"
         name="Details"
-        getComponent={() =>
-          import('./views/settings/account/apiApplicationDetails').then(getDefaultModule)}
+        componentPromise={() => import('./views/settings/account/apiApplicationDetails')}
         component={errorHandler(LazyLoad)}
       />
     </Route>
