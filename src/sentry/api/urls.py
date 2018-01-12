@@ -2,7 +2,6 @@ from __future__ import absolute_import, print_function
 
 from django.conf.urls import include, patterns, url
 
-from .endpoints.account_subscriptions import AccountSubscriptionsEndpoint
 from .endpoints.api_applications import ApiApplicationsEndpoint
 from .endpoints.api_application_details import ApiApplicationDetailsEndpoint
 from .endpoints.api_authorizations import ApiAuthorizationsEndpoint
@@ -136,6 +135,7 @@ from .endpoints.user_index import UserIndexEndpoint
 from .endpoints.user_details import UserDetailsEndpoint
 from .endpoints.user_organizations import UserOrganizationsEndpoint
 from .endpoints.user_notification_details import UserNotificationDetailsEndpoint
+from .endpoints.user_subscriptions import UserSubscriptionsEndpoint
 from .endpoints.event_file_committers import EventFileCommittersEndpoint
 from .endpoints.setup_wizard import SetupWizard
 
@@ -177,9 +177,6 @@ urlpatterns = patterns(
     url(r'^broadcasts/$', BroadcastIndexEndpoint.as_view(),
         name='sentry-api-0-broadcast-index'),
 
-    url(r'^account/subscriptions/$', AccountSubscriptionsEndpoint.as_view(),
-        name='sentry-api-0-account-settings-subscriptions'),
-
     # Users
     url(r'^users/$', UserIndexEndpoint.as_view(), name='sentry-api-0-user-index'),
     url(
@@ -211,6 +208,11 @@ urlpatterns = patterns(
         r'^users/(?P<user_id>[^\/]+)/notifications/$',
         UserNotificationDetailsEndpoint.as_view(),
         name='sentry-api-0-user-notifications'
+    ),
+    url(
+        r'^users/(?P<user_id>[^\/]+)/subscriptions/$',
+        UserSubscriptionsEndpoint.as_view(),
+        name='sentry-api-0-user-subscriptions'
     ),
 
     # Organizations
