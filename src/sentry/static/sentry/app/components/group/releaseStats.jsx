@@ -17,62 +17,36 @@ import {t} from '../../locale';
 
 const DEFAULT_ENV_NAME = '(Default Environment)';
 
-const PRODUCTION_ENV_NAMES = new Set([
-  'production',
-  'prod',
-  'release',
-  'master',
-  'trunk',
-]);
-
 // TODO(dcramer): this should listen to EnvironmentStore
 // changes
 const GroupReleaseStats = createReactClass({
   displayName: 'GroupReleaseStats',
 
   propTypes: {
-    defaultEnvironment: PropTypes.string,
     group: PropTypes.object,
   },
 
   mixins: [ApiMixin, GroupState],
 
-  getDefaultProps() {
-    return {
-      defaultEnvironment: '',
-    };
-  },
-
   getInitialState() {
     let envList = EnvironmentStore.getAll();
+    let defaultEnv = EnvironmentStore.getDefault();
+
     let queryParams = this.props.location.query;
 
-    let selectedEnvironment = queryParams.hasOwnProperty('environment')
-      ? queryParams.environment
-      : this.props.defaultEnvironment;
+    let queriedEnvironment = queryParams.environment || '';
+    let queriedEnvironmentIsValid =
+      queriedEnvironment &&
+      envList.filter(e => e.name === queriedEnvironment).length === 0;
 
-    if (
-      selectedEnvironment &&
-      envList.filter(e => e.name === selectedEnvironment).length === 0
-    ) {
-      selectedEnvironment = null;
-    }
-
-    if (!selectedEnvironment) {
-      let prodEnvs = envList.filter(e => PRODUCTION_ENV_NAMES.has(e.name));
-      selectedEnvironment = prodEnvs.length && prodEnvs[0].name;
-    }
-
-    if (!selectedEnvironment) {
-      selectedEnvironment = envList.length && envList[0].name;
-    }
+    let selectedEnvironment = queriedEnvironmentIsValid ? queriedEnvironment : '';
 
     return {
       loading: true,
       error: false,
       data: null,
       envList,
-      environment: selectedEnvironment || '',
+      environment: selectedEnvironment || defaultEnv,
     };
   },
 

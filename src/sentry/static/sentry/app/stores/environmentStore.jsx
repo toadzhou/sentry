@@ -1,5 +1,13 @@
 import Reflux from 'reflux';
 
+const PRODUCTION_ENV_NAMES = new Set([
+  'production',
+  'prod',
+  'release',
+  'master',
+  'trunk',
+]);
+
 const EnvironmentStore = Reflux.createStore({
   init() {
     this.items = [];
@@ -22,6 +30,15 @@ const EnvironmentStore = Reflux.createStore({
 
   getAll() {
     return this.items;
+  },
+
+  // Default environment is either the first based on the set of common names
+  // or the first in the environment list if none match
+  getDefault() {
+    let allEnvs = this.items;
+    let prodEnvs = allEnvs.filter(e => PRODUCTION_ENV_NAMES.has(e.name));
+
+    return (prodEnvs.length && prodEnvs[0].name) || (allEnvs.length && allEnvs[0].name);
   },
 });
 
