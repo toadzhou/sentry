@@ -1,4 +1,5 @@
 import Reflux from 'reflux';
+import {toTitleCase} from '../utils';
 
 const PRODUCTION_ENV_NAMES = new Set([
   'production',
@@ -8,13 +9,25 @@ const PRODUCTION_ENV_NAMES = new Set([
   'trunk',
 ]);
 
+const DEFAULT_ENV_NAME = '(Default Environment)';
+const DEFAULT_ROUTING_NAME = 'none';
+
 const EnvironmentStore = Reflux.createStore({
   init() {
     this.items = [];
   },
 
   loadInitialData(items) {
-    this.items = items;
+    this.items = items.map(item => ({
+      id: item.id,
+      name: item.name,
+      get displayName() {
+        return toTitleCase(item.name) || DEFAULT_ENV_NAME;
+      },
+      get urlRoutingName() {
+        return item.name || DEFAULT_ROUTING_NAME;
+      },
+    }));
     this.trigger(this.items, 'initial');
   },
 
@@ -38,7 +51,7 @@ const EnvironmentStore = Reflux.createStore({
     let allEnvs = this.items;
     let prodEnvs = allEnvs.filter(e => PRODUCTION_ENV_NAMES.has(e.name));
 
-    return (prodEnvs.length && prodEnvs[0].name) || (allEnvs.length && allEnvs[0].name);
+    return (prodEnvs.length && prodEnvs[0]) || (allEnvs.length && allEnvs[0]) || null;
   },
 });
 
