@@ -1,15 +1,18 @@
 import React from 'react';
-
 import createReactClass from 'create-react-class';
 
+import {t} from '../locale';
 import ApiMixin from '../mixins/apiMixin';
 import HookStore from '../stores/hookStore';
 import LoadingError from '../components/loadingError';
 import LoadingIndicator from '../components/loadingIndicator';
+import Panel from './settings/components/panel';
+import PanelBody from './settings/components/panelBody';
+import PanelHeader from './settings/components/panelHeader';
 import PluginList from '../components/pluginList';
 import ProjectState from '../mixins/projectState';
 import StackedBarChart from '../components/stackedBarChart';
-import {t} from '../locale';
+import TextBlock from './settings/components/text/textBlock';
 
 const DataForwardingStats = createReactClass({
   displayName: 'DataForwardingStats',
@@ -71,29 +74,30 @@ const DataForwardingStats = createReactClass({
     else if (this.state.error) return <LoadingError onRetry={this.fetchData} />;
 
     return (
-      <div className="box">
-        <div className="box-header">
-          <h5>{t('Forwarded events in the last 30 days (by day)')}</h5>
-        </div>
-        {!this.state.emptyStats ? (
-          <StackedBarChart
-            points={this.state.stats}
-            height={150}
-            label="events"
-            barClasses={['accepted']}
-            className="standard-barchart"
-          />
-        ) : (
-          <div className="box-content">
+      <Panel>
+        <PanelHeader>{t('Forwarded events in the last 30 days (by day)')}</PanelHeader>
+        <PanelBody>
+          {!this.state.emptyStats ? (
+            <StackedBarChart
+              style={{
+                border: 'none',
+              }}
+              points={this.state.stats}
+              height={150}
+              label="events"
+              barClasses={['accepted']}
+              className="standard-barchart"
+            />
+          ) : (
             <div className="blankslate p-y-2">
               <h5>{t('Nothing forwarded in the last 30 days.')}</h5>
               <p className="m-b-0">
                 {t('Total events forwarded to third party integrations.')}
               </p>
             </div>
-          </div>
-        )}
-      </div>
+          )}
+        </PanelBody>
+      </Panel>
     );
   },
 });
@@ -212,27 +216,24 @@ export default createReactClass({
     return (
       <div className="ref-data-forwarding-settings">
         <h1>{t('Data Forwarding')}</h1>
-        <div className="panel panel-default">
-          <div className="panel-body p-b-0">
-            <p>
-              {
-                "Enable Data Forwarding to send processed events to your favorite business intelligence tools. The exact payload and types of data depend on the integration you're using."
-              }
-            </p>
-            <p>
-              Learn more about this functionality in our{' '}
-              <a href="https://docs.sentry.io/learn/data-forwarding/">documentation</a>
-              .
-            </p>
-            <p>
-              <small>
-                Note: Sentry will forward <strong>all applicable events</strong> to the
-                given provider, which in some situations may be a much more significant
-                volume of data.
-              </small>
-            </p>
-          </div>
-        </div>
+        <TextBlock>
+          {
+            "Enable Data Forwarding to send processed events to your favorite business intelligence tools. The exact payload and types of data depend on the integration you're using."
+          }
+        </TextBlock>
+        <TextBlock>
+          Learn more about this functionality in our{' '}
+          <a href="https://docs.sentry.io/learn/data-forwarding/">documentation</a>
+          .
+        </TextBlock>
+        <TextBlock>
+          <small>
+            Note: Sentry will forward <strong>all applicable events</strong> to the given
+            provider, which in some situations may be a much more significant volume of
+            data.
+          </small>
+        </TextBlock>
+
         <DataForwardingStats params={params} />
         {this.renderBody()}
       </div>

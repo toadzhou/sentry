@@ -1,6 +1,107 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ProjectPluginDetails renders 1`] = `
+.glamor-20 {
+  background: #fff;
+  border: 1px solid;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.glamor-15 {
+  border-bottom: 1px solid;
+  border-radius: 0 0;
+  text-transform: uppercase;
+  font-size: 13px;
+  line-height: 1;
+  padding: 8px 20px;
+}
+
+.glamor-11 {
+  font-size: inherit;
+  text-transform: inherit;
+  margin: 0;
+}
+
+.glamor-9 {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  font-size: inherit;
+  text-transform: inherit;
+  margin: 0;
+}
+
+.glamor-6 {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.glamor-4 {
+  box-sizing: border-box;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.glamor-2 {
+  box-sizing: border-box;
+  margin-right: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.glamor-0 {
+  position: relative;
+  height: 20px;
+  width: 20px;
+  border-radius: 2px;
+  border: 0;
+  background-color: #fff;
+  display: inline-block;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-image: url();
+}
+
+.glamor-19 {
+  padding: 20px;
+}
+
+.glamor-17 {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding: 20px;
+}
+
 <withPlugins
   location={
     Object {
@@ -242,81 +343,184 @@ exports[`ProjectPluginDetails renders 1`] = `
                 }
               }
             >
-              <div
-                className="box ref-plugin-config-amazon-sqs"
+              <Styled(div)
+                className="plugin-config ref-plugin-config-amazon-sqs"
               >
                 <div
-                  className="box-header"
+                  className="plugin-config ref-plugin-config-amazon-sqs glamor-20 glamor-21"
                 >
-                  <h3>
-                    Amazon SQS
-                  </h3>
+                  <PanelHeader
+                    hasButtons={true}
+                  >
+                    <Styled(div)
+                      hasButtons={true}
+                    >
+                      <div
+                        className="glamor-15 glamor-16"
+                      >
+                        <Styled(Component)>
+                          <Component
+                            className="glamor-11 glamor-8"
+                          >
+                            <Styled(div)
+                              className="glamor-11 glamor-8"
+                            >
+                              <div
+                                className="glamor-8 glamor-9 glamor-10"
+                              >
+                                <Flex>
+                                  <Base
+                                    className="glamor-6"
+                                  >
+                                    <div
+                                      className="glamor-6"
+                                      is={null}
+                                    >
+                                      <Flex
+                                        align="center"
+                                        flex="1"
+                                      >
+                                        <Base
+                                          align="center"
+                                          className="glamor-4"
+                                          flex="1"
+                                        >
+                                          <div
+                                            className="glamor-4"
+                                            is={null}
+                                          >
+                                            <Flex
+                                              align="center"
+                                              mr={1}
+                                            >
+                                              <Base
+                                                align="center"
+                                                className="glamor-2"
+                                                mr={1}
+                                              >
+                                                <div
+                                                  className="glamor-2"
+                                                  is={null}
+                                                >
+                                                  <PluginIcon
+                                                    pluginId="amazon-sqs"
+                                                    size={20}
+                                                  >
+                                                    <Styled(div)
+                                                      image={Object {}}
+                                                      size={20}
+                                                    >
+                                                      <div
+                                                        className="glamor-0 glamor-1"
+                                                        size={20}
+                                                      />
+                                                    </Styled(div)>
+                                                  </PluginIcon>
+                                                </div>
+                                              </Base>
+                                            </Flex>
+                                            <span>
+                                              Amazon SQS
+                                            </span>
+                                          </div>
+                                        </Base>
+                                      </Flex>
+                                    </div>
+                                  </Base>
+                                </Flex>
+                              </div>
+                            </Styled(div)>
+                          </Component>
+                        </Styled(Component)>
+                      </div>
+                    </Styled(div)>
+                  </PanelHeader>
+                  <PanelBody
+                    direction="column"
+                    disablePadding={false}
+                    flex={true}
+                    wrap="wrap"
+                  >
+                    <Flex
+                      className="glamor-19"
+                      direction="column"
+                      wrap="wrap"
+                    >
+                      <Base
+                        className="glamor-17"
+                        direction="column"
+                        wrap="wrap"
+                      >
+                        <div
+                          className="glamor-17"
+                          is={null}
+                        >
+                          <div
+                            dangerouslySetInnerHTML={
+                              Object {
+                                "__html": undefined,
+                              }
+                            }
+                          />
+                          <PluginSettings
+                            organization={
+                              Object {
+                                "access": Array [
+                                  "org:read",
+                                  "org:write",
+                                  "org:admin",
+                                  "project:read",
+                                  "project:write",
+                                  "project:admin",
+                                  "team:read",
+                                  "team:write",
+                                  "team:admin",
+                                ],
+                                "features": Array [],
+                                "id": "3",
+                                "name": "Organization Name",
+                                "onboardingTasks": Array [],
+                                "slug": "org-slug",
+                                "status": Object {
+                                  "id": "active",
+                                  "name": "active",
+                                },
+                                "teams": Array [],
+                              }
+                            }
+                            plugin={
+                              DefaultPlugin {
+                                "assets": Array [],
+                                "author": Object {
+                                  "name": "Sentry Team",
+                                  "url": "https://github.com/getsentry/sentry",
+                                },
+                                "canDisable": true,
+                                "enabled": false,
+                                "hasConfiguration": true,
+                                "id": "amazon-sqs",
+                                "name": "Amazon SQS",
+                                "slug": "amazon-sqs",
+                                "version": "8.23.0.dev0",
+                              }
+                            }
+                            project={
+                              Object {
+                                "digestsMaxDelay": 60,
+                                "digestsMinDelay": 5,
+                                "id": "2",
+                                "name": "Project Name",
+                                "slug": "project-slug",
+                                "subjectTemplate": "[$project] \${tag:level}: $title",
+                              }
+                            }
+                          />
+                        </div>
+                      </Base>
+                    </Flex>
+                  </PanelBody>
                 </div>
-                <div
-                  className="box-content with-padding"
-                >
-                  <div
-                    dangerouslySetInnerHTML={
-                      Object {
-                        "__html": undefined,
-                      }
-                    }
-                  />
-                  <PluginSettings
-                    organization={
-                      Object {
-                        "access": Array [
-                          "org:read",
-                          "org:write",
-                          "org:admin",
-                          "project:read",
-                          "project:write",
-                          "project:admin",
-                          "team:read",
-                          "team:write",
-                          "team:admin",
-                        ],
-                        "features": Array [],
-                        "id": "3",
-                        "name": "Organization Name",
-                        "onboardingTasks": Array [],
-                        "slug": "org-slug",
-                        "status": Object {
-                          "id": "active",
-                          "name": "active",
-                        },
-                        "teams": Array [],
-                      }
-                    }
-                    plugin={
-                      DefaultPlugin {
-                        "assets": Array [],
-                        "author": Object {
-                          "name": "Sentry Team",
-                          "url": "https://github.com/getsentry/sentry",
-                        },
-                        "canDisable": true,
-                        "enabled": false,
-                        "hasConfiguration": true,
-                        "id": "amazon-sqs",
-                        "name": "Amazon SQS",
-                        "slug": "amazon-sqs",
-                        "version": "8.23.0.dev0",
-                      }
-                    }
-                    project={
-                      Object {
-                        "digestsMaxDelay": 60,
-                        "digestsMinDelay": 5,
-                        "id": "2",
-                        "name": "Project Name",
-                        "slug": "project-slug",
-                        "subjectTemplate": "[$project] \${tag:level}: $title",
-                      }
-                    }
-                  />
-                </div>
-              </div>
+              </Styled(div)>
             </PluginConfig>
           </div>
           <div
